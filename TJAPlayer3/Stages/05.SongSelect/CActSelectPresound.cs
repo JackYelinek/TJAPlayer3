@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Threading;
 using FDK;
 
 namespace TJAPlayer3
@@ -70,6 +71,10 @@ namespace TJAPlayer3
 		}
 		public override void On非活性化()
 		{
+			if (previewSongThread != null)
+			{
+				previewSongThread.Abort();
+			}
 			this.tサウンド停止();
 			this.ct再生待ちウェイト = null;
 			this.ctBGMフェードイン用 = null;
@@ -136,7 +141,8 @@ namespace TJAPlayer3
         private long long再生開始時のシステム時刻;
 		private CSound sound;
 		private string str現在のファイル名;
-		
+		private Thread previewSongThread;   // 2021-03-20 Deathblood adding multithreading to the preview song
+
 		private void tBGMフェードアウト開始()
 		{
 			if( this.ctBGMフェードイン用 != null )
@@ -164,7 +170,11 @@ namespace TJAPlayer3
 				try
                 {
                     strPreviewFilename = cスコア.ファイル情報.フォルダの絶対パス + cスコア.譜面情報.strBGMファイル名;
-                    this.sound = TJAPlayer3.Sound管理.tサウンドを生成する( strPreviewFilename, ESoundGroup.SongPreview );
+					if (this.sound != null)
+					{
+						this.sound.Dispose();
+					}
+					this.sound = TJAPlayer3.Sound管理.tサウンドを生成する( strPreviewFilename, ESoundGroup.SongPreview );
 
                     // 2018-08-27 twopointzero - DO attempt to load (or queue scanning) loudness metadata here.
                     //                           Initialization, song enumeration, and/or interactions may have
@@ -174,7 +184,8 @@ namespace TJAPlayer3
                                            ?? LoudnessMetadataScanner.LoadForAudioPath(strPreviewFilename);
                     TJAPlayer3.SongGainController.Set( cスコア.譜面情報.SongVol, loudnessMetadata, this.sound );
 
-                    this.sound.t再生を開始する( true );
+					
+					this.sound.t再生を開始する( true );
                     if( long再生位置 == -1 )
                     {
                         this.long再生開始時のシステム時刻 = CSound管理.rc演奏用タイマ.nシステム時刻ms;
@@ -218,7 +229,13 @@ namespace TJAPlayer3
 					this.ct再生待ちウェイト.t停止();
 					if( !TJAPlayer3.stage選曲.bスクロール中 )
 					{
-                        this.tプレビューサウンドの作成();
+						// 2021-03-20 Deathblood - Multithreading this so it doesn't freeze for a couple seconds when hovering over any song
+						if (previewSongThread != null)
+						{
+							previewSongThread.Abort();
+						}
+						previewSongThread = new Thread(tプレビューサウンドの作成);
+						previewSongThread.Start();
 					}
 				}
 			}

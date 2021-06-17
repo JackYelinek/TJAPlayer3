@@ -1162,7 +1162,7 @@ Debug.WriteLine("更に再生に失敗: " + Path.GetFileName(this.strファイ�
 				BassMix.BASS_Mixer_ChannelSetPosition( this.hBassStream, 0 );
 				//pos = 0;
 			}
-			else if( this.bDirectSoundである )
+			else if( this.bDirectSoundである && SoundGroup != ESoundGroup.SongPreview)
 			{
 				this.Buffer.CurrentPlayPosition = 0;
 			}
