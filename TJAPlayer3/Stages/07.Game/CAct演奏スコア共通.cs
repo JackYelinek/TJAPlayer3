@@ -32,6 +32,7 @@ namespace TJAPlayer3
             public bool b表示中;
             public bool bBonusScore;
             public CCounter ctTimer;
+            public int nVisibleScore;
             public int nAddScore;
             public int nPlayer;
         }
@@ -201,6 +202,7 @@ namespace TJAPlayer3
                         this.stScore[ i ].b使用中 = true;
                         this.stScore[ i ].b表示中 = true;
                         this.stScore[ i ].nAddScore = (int)delta;
+                        this.stScore[ i ].nVisibleScore = (int)delta;
                         this.stScore[ i ].ctTimer = new CCounter( 0, 500, 1, TJAPlayer3.Timer );
                         this.stScore[ i ].bBonusScore = false;
                         this.stScore[ i ].nPlayer = player;

@@ -81,25 +81,32 @@ namespace TJAPlayer3
                 {
                     if( this.stScore[ i ].b使用中 )
                     {
-                        if( !this.stScore[ i ].ctTimer.b停止中 )
+                        if (this.stScore[i].nAddScore != 0)
+                        {
+                            this.n現在表示中のスコア[this.stScore[i].nPlayer].Taiko += (long)this.stScore[i].nAddScore;
+                            this.ct点数アニメタイマ[stScore[i].nPlayer] = new CCounter(0, 11, 12, TJAPlayer3.Timer);
+                            this.stScore[i].nAddScore = 0;
+                        }
+
+                        if ( !this.stScore[ i ].ctTimer.b停止中 )
                         {
                             this.stScore[ i ].ctTimer.t進行();
                             if( this.stScore[ i ].ctTimer.b終了値に達した )
                             {
-                                this.n現在表示中のスコア[ this.stScore[ i ].nPlayer ].Taiko += (long)this.stScore[ i ].nAddScore;
+                                //this.n現在表示中のスコア[ this.stScore[ i ].nPlayer ].Taiko += (long)this.stScore[ i ].nAddScore;
                                 if( this.stScore[ i ].b表示中 == true )
                                     this.n現在表示中のAddScore--;
                                 this.stScore[ i ].ctTimer.t停止();
                                 this.stScore[ i ].b使用中 = false;
-                                if (ct点数アニメタイマ[stScore[i].nPlayer].b終了値に達してない)
-                                {
-                                    this.ct点数アニメタイマ[stScore[i].nPlayer] = new CCounter(0, 11, 12, TJAPlayer3.Timer);
-                                    this.ct点数アニメタイマ[stScore[i].nPlayer].n現在の値 = 1;
-                                }
-                                else
-                                {
-                                    this.ct点数アニメタイマ[stScore[i].nPlayer] = new CCounter(0, 11, 12, TJAPlayer3.Timer);
-                                }
+                                //if (ct点数アニメタイマ[stScore[i].nPlayer].b終了値に達してない)
+                                //{
+                                //    this.ct点数アニメタイマ[stScore[i].nPlayer] = new CCounter(0, 11, 12, TJAPlayer3.Timer);
+                                //    this.ct点数アニメタイマ[stScore[i].nPlayer].n現在の値 = 1;
+                                //}
+                                //else
+                                //{
+                                //    this.ct点数アニメタイマ[stScore[i].nPlayer] = new CCounter(0, 11, 12, TJAPlayer3.Timer);
+                                //}
                                 TJAPlayer3.stage演奏ドラム画面.actDan.Update();
                             }
 
@@ -195,14 +202,14 @@ namespace TJAPlayer3
                             }
 
 
-                            if ( this.n現在表示中のAddScore < 10 && this.stScore[ i ].bBonusScore == false )
-                                base.t小文字表示(TJAPlayer3.Skin.Game_Score_Add_X[this.stScore[i].nPlayer] + xAdd, this.stScore[ i ].nPlayer == 0 ? TJAPlayer3.Skin.Game_Score_Add_Y[ this.stScore[ i ].nPlayer ] + yAdd : TJAPlayer3.Skin.Game_Score_Add_Y[ this.stScore[ i ].nPlayer ] - yAdd, string.Format( "{0,7:######0}", this.stScore[ i ].nAddScore ), this.stScore[ i ].nPlayer + 1 , alpha, stScore[i].nPlayer);
-                            if( this.n現在表示中のAddScore < 10 && this.stScore[ i ].bBonusScore == true )
-                                base.t小文字表示(TJAPlayer3.Skin.Game_Score_AddBonus_X[this.stScore[i].nPlayer] + xAdd, TJAPlayer3.Skin.Game_Score_AddBonus_Y[ this.stScore[ i ].nPlayer ], string.Format( "{0,7:######0}", this.stScore[ i ].nAddScore ), this.stScore[ i ].nPlayer + 1 , alpha, stScore[i].nPlayer);
+                            if (this.n現在表示中のAddScore < 10 && this.stScore[i].bBonusScore == false)
+                                base.t小文字表示(TJAPlayer3.Skin.Game_Score_Add_X[this.stScore[i].nPlayer] + xAdd, this.stScore[i].nPlayer == 0 ? TJAPlayer3.Skin.Game_Score_Add_Y[this.stScore[i].nPlayer] + yAdd : TJAPlayer3.Skin.Game_Score_Add_Y[this.stScore[i].nPlayer] - yAdd, string.Format("{0,7:######0}", this.stScore[i].nVisibleScore), this.stScore[i].nPlayer + 1, alpha, stScore[i].nPlayer);
+                            if (this.n現在表示中のAddScore < 10 && this.stScore[i].bBonusScore == true)
+                                base.t小文字表示(TJAPlayer3.Skin.Game_Score_AddBonus_X[this.stScore[i].nPlayer] + xAdd, TJAPlayer3.Skin.Game_Score_AddBonus_Y[this.stScore[i].nPlayer], string.Format("{0,7:######0}", this.stScore[i].nVisibleScore), this.stScore[i].nPlayer + 1, alpha, stScore[i].nPlayer);
                             else
                             {
                                 this.n現在表示中のAddScore--;
-                                this.stScore[ i ].b表示中 = false;
+                                this.stScore[i].b表示中 = false;
                             }
                         }
                     }
