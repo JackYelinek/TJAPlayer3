@@ -92,7 +92,7 @@ namespace TJAPlayer3
                 var genreTextureFileName = CStrジャンルtoStr.ForTextureFileName( genreName );
 			    this.txGENRE = genreTextureFileName == null ? null : TJAPlayer3.Tx.TxCGenre(genreTextureFileName);
 
-			    this.ct進行用 = new CCounter( 0, 2000, 2, TJAPlayer3.Timer );
+			    //this.ct進行用 = new CCounter( 0, 2000, 2, TJAPlayer3.Timer );
 			}
 		}
 
