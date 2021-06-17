@@ -1002,7 +1002,8 @@ namespace TJAPlayer3
 
                     if(this.b選択曲が変更された && n現在のスクロールカウンタ==0)
                     {
-                        if (this.ttk選択している曲の曲名 != null)
+						Trace.TraceInformation("Song Selected: " + r現在選択中の曲.strタイトル);
+						if (this.ttk選択している曲の曲名 != null)
                         {
                             this.ttk選択している曲の曲名 = null;
                             this.b選択曲が変更された = false;
