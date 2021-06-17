@@ -355,11 +355,11 @@ namespace FDK
             switch (horizontalReferencePoint)
             {
                 case HorizontalReferencePoint.Center:
-                    return -(szテクスチャサイズ.Width / 2);
+                    return (int)-((szテクスチャサイズ.Width * vc拡大縮小倍率.X) / 2);
                 case HorizontalReferencePoint.Left:
                     return 0;
                 case HorizontalReferencePoint.Right:
-                    return -szテクスチャサイズ.Width;
+                    return (int)-(szテクスチャサイズ.Width * vc拡大縮小倍率.X);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(horizontalReferencePoint), horizontalReferencePoint, null);
             }
