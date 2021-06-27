@@ -149,15 +149,17 @@ namespace TJAPlayer3
 
 					this.ctキー反復用.Up.tキー反復( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int)SlimDX.DirectInput.Key.UpArrow ), new CCounter.DGキー処理( this.tカーソルを上へ移動する ) );
 					this.ctキー反復用.R.tキー反復( TJAPlayer3.Pad.b押されているGB( Eパッド.HH ), new CCounter.DGキー処理( this.tカーソルを上へ移動する ) );
-					if( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.SD ) )
+					if( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.SD) || TJAPlayer3.Pad.b押されたDGB(Eパッド.LBlue))
 						this.tカーソルを上へ移動する();
 
 					this.ctキー反復用.Down.tキー反復( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int)SlimDX.DirectInput.Key.DownArrow ), new CCounter.DGキー処理( this.tカーソルを下へ移動する ) );
 					this.ctキー反復用.B.tキー反復( TJAPlayer3.Pad.b押されているGB( Eパッド.BD ), new CCounter.DGキー処理( this.tカーソルを下へ移動する ) );
-					if( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LT ) )
+					if( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LT ) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RBlue))
 						this.tカーソルを下へ移動する();
 
-					if( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC ) || ( TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDX.DirectInput.Key.Return ) ) ) )
+					if( ( TJAPlayer3.Pad.b押されたDGB( Eパッド.CY ) || TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.RD ) ) || ( TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.LC )
+						|| TJAPlayer3.Pad.b押されたDGB(Eパッド.LRed) || TJAPlayer3.Pad.b押されたDGB(Eパッド.RRed)
+						|| ( TJAPlayer3.ConfigIni.bEnterがキー割り当てのどこにも使用されていない && TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDX.DirectInput.Key.Return ) ) ) )
 					{
 						if ( ( this.n現在のカーソル行 == (int) E戻り値.GAMESTART - 1 ) && TJAPlayer3.Skin.soundゲーム開始音.b読み込み成功 )
 						{
