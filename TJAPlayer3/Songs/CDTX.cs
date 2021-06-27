@@ -4250,12 +4250,11 @@ namespace TJAPlayer3
             if (strCommandName.Equals("TITLE"))
             {
                 //this.TITLE = strCommandParam;
-                var subTitle = "";
-                for (int i = 0; i < strArray.Length; i++)
+                this.TITLE = "";
+                for (int i = 1; i < strArray.Length; i++)
                 {
-                    subTitle += strArray[i];
+                    this.TITLE += strArray[i];
                 }
-                this.TITLE = subTitle.Substring(5);
                 //tbTitle.Text = strCommandParam;
             }
             if (strCommandName.Equals("SUBTITLE"))
