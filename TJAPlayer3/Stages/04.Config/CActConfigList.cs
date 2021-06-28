@@ -1519,7 +1519,7 @@ namespace TJAPlayer3
 			// #33689 2014.6.17 yyagi CONFIGでSoundTimerTypeの設定を変更した場合も、サウンドデバイスを再構築する。
 			#region [ サウンドデバイス変更 ]
 			if ( this.iSystemSoundType_initial != this.iSystemSoundType.n現在選択されている項目番号 ||
-				 this.iSystemWASAPIBufferSizeMs_initial != this.iSystemWASAPIBufferSizeMs.n現在の値 ||
+				// this.iSystemWASAPIBufferSizeMs_initial != this.iSystemWASAPIBufferSizeMs.n現在の値 ||
 				// this.iSystemASIOBufferSizeMs_initial != this.iSystemASIOBufferSizeMs.n現在の値 ||
 				this.iSystemASIODevice_initial != this.iSystemASIODevice.n現在選択されている項目番号 ||
 				this.iSystemSoundTimerType_initial != this.iSystemSoundTimerType.GetIndex() )
