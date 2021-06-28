@@ -2374,11 +2374,11 @@ namespace TJAPlayer3
 				}
 				else if ( keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.LeftArrow ) )		// #24243 2011.1.16 yyagi UI for InputAdjustTime in playing screen.
 				{
-					ChangeInputAdjustTimeInPlaying( keyboard, -1 );
+					//ChangeInputAdjustTimeInPlaying( keyboard, -1 );
 				}
 				else if ( keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.RightArrow ) )		// #24243 2011.1.16 yyagi UI for InputAdjustTime in playing screen.
 				{
-					ChangeInputAdjustTimeInPlaying( keyboard, +1 );
+					//ChangeInputAdjustTimeInPlaying( keyboard, +1 );
 				}
 				else if ( ( base.eフェーズID == CStage.Eフェーズ.共通_通常状態 ) && ( keyboard.bキーが押された( (int) SlimDX.DirectInput.Key.Escape ) || TJAPlayer3.Pad.b押されたGB( Eパッド.FT ) ) && !this.actPauseMenu.bIsActivePopupMenu )
 				{	// escape (exit)
