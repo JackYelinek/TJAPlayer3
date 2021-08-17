@@ -124,7 +124,7 @@ namespace FDK
 
         private static LoudnessMetadata? LoadFromMetadataPath(string loudnessMetadataPath)
         {
-XPathDocument xPathDocument;
+            XPathDocument xPathDocument;
             try
             {
                 xPathDocument = new XPathDocument(loudnessMetadataPath);
