@@ -1073,6 +1073,46 @@ namespace TJAPlayer3
 					        CLagLogger.Add(nPlayer, pChip);
 					    }
 
+                        #region Trace Information for Judgement
+                        if (pChip != null)
+                        {
+                            string judge = string.Empty;
+                            int realNoteNumber = 0;
+                            bool isDon = false;
+                            for (int i = 0; i < pChip.nList上の位置; i++)
+                            {
+                                if (listChip[nPlayer][i].nチャンネル番号 == 0x11 || listChip[nPlayer][i].nチャンネル番号 == 0x13)
+                                {
+                                    isDon = true;
+                                    realNoteNumber++;
+                                }
+                                if (listChip[nPlayer][i].nチャンネル番号 == 0x12 || listChip[nPlayer][i].nチャンネル番号 == 0x14)
+                                {
+                                    isDon = false;
+                                    realNoteNumber++;
+                                }
+                            }
+                            realNoteNumber++;
+                            switch (eJudgeResult)
+                            {
+                                case E判定.Perfect:
+                                    judge = "Good";
+                                    break;
+                                case E判定.Good:
+                                    judge = "OK";
+                                    break;
+                                case E判定.Poor:
+                                case E判定.Miss:
+                                    judge = "Bad";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            Trace.TraceInformation("Judgement per Note: " + realNoteNumber + ": "  + judge);
+                        }
+                        #endregion
+
+
                         if ( pChip.nチャンネル番号 == 0x15 || pChip.nチャンネル番号 == 0x16 )
                         {
                             #region[ 連打 ]
