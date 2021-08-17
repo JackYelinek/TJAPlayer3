@@ -1078,25 +1078,15 @@ namespace TJAPlayer3
                         {
                             string judge = string.Empty;
                             int realNoteNumber = 0;
-                            bool isDon = false;
-                            bool isNote = false;
                             for (int i = 0; i <= pChip.nList上の位置; i++)
                             {
                                 if (listChip[nPlayer][i].nチャンネル番号 == 0x11 || listChip[nPlayer][i].nチャンネル番号 == 0x13)
                                 {
-                                    isNote = true;
-                                    isDon = true;
                                     realNoteNumber++;
                                 }
                                 if (listChip[nPlayer][i].nチャンネル番号 == 0x12 || listChip[nPlayer][i].nチャンネル番号 == 0x14)
                                 {
-                                    isNote = true;
-                                    isDon = false;
                                     realNoteNumber++;
-                                }
-                                else if (isDon == false)
-                                {
-                                    isNote = false;
                                 }
                             }
                             switch (eJudgeResult)
@@ -1114,7 +1104,7 @@ namespace TJAPlayer3
                                 default:
                                     break;
                             }
-                            if (isNote)
+                            if (pChip.nチャンネル番号 == 0x11 || pChip.nチャンネル番号 == 0x13 || pChip.nチャンネル番号 == 0x12 || pChip.nチャンネル番号 == 0x14)
                             {
                                 Trace.TraceInformation("Judgement per Note: " + realNoteNumber + ": "  + judge);
                             }
