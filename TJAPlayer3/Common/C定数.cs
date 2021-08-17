@@ -191,9 +191,12 @@ namespace TJAPlayer3
 	}
 	public enum E判定
 	{
+		// Taiko Good
 		Perfect	= 0,
+		// Taiko OK
 		Great	= 1,
 		Good	= 2,
+		// Taiko Bad
 		Poor	= 3,
 		Miss	= 4,
 		Bad		= 5,
