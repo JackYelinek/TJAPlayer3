@@ -124,7 +124,7 @@ namespace FDK
 
         private static LoudnessMetadata? LoadFromMetadataPath(string loudnessMetadataPath)
         {
-            XPathDocument xPathDocument;
+XPathDocument xPathDocument;
             try
             {
                 xPathDocument = new XPathDocument(loudnessMetadataPath);
@@ -138,6 +138,10 @@ namespace FDK
 
             var trackNavigator = xPathDocument.CreateNavigator()
                 .SelectSingleNode(@"//bs1770gain/album/track[@total=""1"" and @number=""1""]");
+            if (trackNavigator == null)
+            {
+                trackNavigator = xPathDocument.CreateNavigator().SelectSingleNode(@"//bs1770gain/track[@total=""1"" and @number=""1""]");
+            }
 
             var integratedLufsNode = trackNavigator?.SelectSingleNode(@"integrated/@lufs");
             var truePeakTpfsNode = trackNavigator?.SelectSingleNode(@"true-peak/@tpfs");
